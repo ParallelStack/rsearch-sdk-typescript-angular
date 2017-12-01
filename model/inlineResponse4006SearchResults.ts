@@ -10,11 +10,8 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
 export interface InlineResponse4006SearchResults {
     error: string;
-
     metadata: any;
-
 }

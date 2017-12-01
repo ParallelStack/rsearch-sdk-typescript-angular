@@ -10,14 +10,13 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
 export interface InlineResponse202Index {
     result: InlineResponse202Index.ResultEnum;
-
 }
 export namespace InlineResponse202Index {
-    export enum ResultEnum {
-        Deleted = <any> 'deleted'
+    export type ResultEnum = 'deleted';
+    export const ResultEnum = {
+        Deleted: 'deleted' as ResultEnum
     }
 }

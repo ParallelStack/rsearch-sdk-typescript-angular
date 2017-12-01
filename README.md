@@ -28,17 +28,112 @@ _unPublished (not recommended):_
 npm install PATH_TO_GENERATED_PACKAGE --save
 ```
 
-In your angular2 project:
+_using `npm link`:_
 
-TODO: paste example.
+In PATH_TO_GENERATED_PACKAGE:
+```
+npm link
+```
+
+In your project:
+```
+npm link pstack-rsearch-client@1.0.0
+```
+
+In your Angular project:
+
+
+```
+// without configuring providers
+import { ApiModule } from 'pstack-rsearch-client';
+
+@NgModule({
+    imports: [ ApiModule ],
+    declarations: [ AppComponent ],
+    providers: [],
+    bootstrap: [ AppComponent ]
+})
+export class AppModule {}
+```
+
+```
+// configuring providers
+import { ApiModule, Configuration, ConfigurationParameters } from 'pstack-rsearch-client';
+
+export function apiConfigFactory (): Configuration => {
+  const params: ConfigurationParameters = {
+    // set configuration parameters here.
+  }
+  return new Configuration(params);
+}
+
+@NgModule({
+    imports: [ ApiModule.forRoot(apiConfigFactory) ],
+    declarations: [ AppComponent ],
+    providers: [],
+    bootstrap: [ AppComponent ]
+})
+export class AppModule {}
+```
+
+```
+import { DefaultApi } from 'pstack-rsearch-client';
+
+export class AppComponent {
+	 constructor(private apiGateway: DefaultApi) { }
+}
+```
+
+Note: The ApiModule is restricted to being instantiated once app wide.
+This is to ensure that all services are treated as singletons.
 
 ### Set service base path
 If different than the generated base path, during app bootstrap, you can provide the base path to your service. 
 
 ```
-import { BASE_PATH } from './path-to-swagger-gen-service/index';
+import { BASE_PATH } from 'pstack-rsearch-client';
 
 bootstrap(AppComponent, [
     { provide: BASE_PATH, useValue: 'https://your-web-service.com' },
 ]);
+```
+or
+
+```
+import { BASE_PATH } from 'pstack-rsearch-client';
+
+@NgModule({
+    imports: [],
+    declarations: [ AppComponent ],
+    providers: [ provide: BASE_PATH, useValue: 'https://your-web-service.com' ],
+    bootstrap: [ AppComponent ]
+})
+export class AppModule {}
+```
+
+
+#### Using @angular/cli
+First extend your `src/environments/*.ts` files by adding the corresponding base path:
+
+```
+export const environment = {
+  production: false,
+  API_BASE_PATH: 'http://127.0.0.1:8080'
+};
+```
+
+In the src/app/app.module.ts:
+```
+import { BASE_PATH } from 'pstack-rsearch-client';
+import { environment } from '../environments/environment';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [ ],
+  providers: [{ provide: BASE_PATH, useValue: environment.API_BASE_PATH }],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
 ```  

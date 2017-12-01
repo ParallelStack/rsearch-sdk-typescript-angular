@@ -9,10 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { InlineResponse201Index } from './inlineResponse201Index';
 
-import * as models from './models';
 
 export interface InlineResponse2011 {
-    documentType?: models.InlineResponse201Index;
-
+    documentType?: InlineResponse201Index;
 }

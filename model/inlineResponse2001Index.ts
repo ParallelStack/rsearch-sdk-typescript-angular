@@ -10,14 +10,13 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
 export interface InlineResponse2001Index {
     result: InlineResponse2001Index.ResultEnum;
-
 }
 export namespace InlineResponse2001Index {
-    export enum ResultEnum {
-        Available = <any> 'available'
+    export type ResultEnum = 'available';
+    export const ResultEnum = {
+        Available: 'available' as ResultEnum
     }
 }

@@ -9,10 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { InlineResponse2003DocumentType } from './inlineResponse2003DocumentType';
 
-import * as models from './models';
 
 export interface InlineResponse2003 {
-    documentType?: models.InlineResponse2003DocumentType;
-
+    documentType?: InlineResponse2003DocumentType;
 }
