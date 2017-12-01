@@ -9,9 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { InlineResponse2004Indexes } from './inlineResponse2004Indexes';
+import { InlineResponse2009SuggestResults } from './inlineResponse2009SuggestResults';
 
 
-export interface InlineResponse2004 {
-    indexes?: InlineResponse2004Indexes;
+export interface InlineResponse2009 {
+    suggestResults?: InlineResponse2009SuggestResults;
 }

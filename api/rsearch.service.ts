@@ -27,6 +27,7 @@ import { InlineResponse2005 } from '../model/inlineResponse2005';
 import { InlineResponse2006 } from '../model/inlineResponse2006';
 import { InlineResponse2007 } from '../model/inlineResponse2007';
 import { InlineResponse2008 } from '../model/inlineResponse2008';
+import { InlineResponse2009 } from '../model/inlineResponse2009';
 import { InlineResponse201 } from '../model/inlineResponse201';
 import { InlineResponse2011 } from '../model/inlineResponse2011';
 import { InlineResponse202 } from '../model/inlineResponse202';
@@ -85,9 +86,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2005>;
-    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2005>>;
-    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2005>>;
+    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2006>;
+    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2006>>;
+    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2006>>;
     public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling addDocument.');
@@ -132,7 +133,7 @@ export class RsearchService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<InlineResponse2005>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
+        return this.httpClient.post<InlineResponse2006>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
             documentDetails,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -267,9 +268,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2006>;
-    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2006>>;
-    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2006>>;
+    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2007>;
+    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2007>>;
+    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2007>>;
     public deleteDocument(indexName: string, docTypeName: string, docId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling deleteDocument.');
@@ -306,7 +307,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<InlineResponse2006>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
+        return this.httpClient.delete<InlineResponse2007>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -374,9 +375,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2007>;
-    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2007>>;
-    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2007>>;
+    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2008>;
+    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2008>>;
+    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2008>>;
     public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getAdvancedSearchResults.');
@@ -418,7 +419,7 @@ export class RsearchService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<InlineResponse2007>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/search`,
+        return this.httpClient.post<InlineResponse2008>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/search`,
             search,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -487,9 +488,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2002>;
-    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2002>>;
-    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2002>>;
+    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
+    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
+    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
     public getAllDocuments(indexName: string, docTypeName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getAllDocuments.');
@@ -523,7 +524,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2002>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents`,
+        return this.httpClient.get<InlineResponse2004>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -587,9 +588,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getBasicSearchResults(indexName: string, q: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2007>;
-    public getBasicSearchResults(indexName: string, q: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2007>>;
-    public getBasicSearchResults(indexName: string, q: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2007>>;
+    public getBasicSearchResults(indexName: string, q: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2008>;
+    public getBasicSearchResults(indexName: string, q: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2008>>;
+    public getBasicSearchResults(indexName: string, q: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2008>>;
     public getBasicSearchResults(indexName: string, q: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getBasicSearchResults.');
@@ -628,7 +629,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2007>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/search`,
+        return this.httpClient.get<InlineResponse2008>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/search`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -648,9 +649,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
-    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
-    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
+    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2005>;
+    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2005>>;
+    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2005>>;
     public getDocument(indexName: string, docTypeName: string, docId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getDocument.');
@@ -687,7 +688,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2004>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
+        return this.httpClient.get<InlineResponse2005>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -810,9 +811,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2008>;
-    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2008>>;
-    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2008>>;
+    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2009>;
+    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2009>>;
+    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2009>>;
     public getSuggestResults(indexName: string, docTypeName: string, q: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getSuggestResults.');
@@ -854,7 +855,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2008>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/suggest`,
+        return this.httpClient.get<InlineResponse2009>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/suggest`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

@@ -9,9 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { InlineResponse2008SuggestResults } from './inlineResponse2008SuggestResults';
+import { InlineResponse2008SearchResults } from './inlineResponse2008SearchResults';
 
 
 export interface InlineResponse2008 {
-    suggestResults?: InlineResponse2008SuggestResults;
+    searchResults?: InlineResponse2008SearchResults;
 }

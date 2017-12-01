@@ -12,6 +12,6 @@
 
 
 export interface InlineResponse2002Indexes {
-    results: Array<ERRORUNKNOWN>;
+    results: Array<string>;
     metadata: any;
 }
