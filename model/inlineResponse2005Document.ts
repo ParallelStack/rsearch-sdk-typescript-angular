@@ -10,7 +10,9 @@
  * Do not edit the class manually.
  */
 
+import * as models from './models';
 
 export interface InlineResponse2005Document {
     result: any;
+
 }

@@ -10,13 +10,14 @@
  * Do not edit the class manually.
  */
 
+import * as models from './models';
 
 export interface InlineResponse201Index {
     result: InlineResponse201Index.ResultEnum;
+
 }
 export namespace InlineResponse201Index {
-    export type ResultEnum = 'created';
-    export const ResultEnum = {
-        Created: 'created' as ResultEnum
+    export enum ResultEnum {
+        Created = <any> 'created'
     }
 }

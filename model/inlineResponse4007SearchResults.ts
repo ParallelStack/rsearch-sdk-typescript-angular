@@ -10,8 +10,11 @@
  * Do not edit the class manually.
  */
 
+import * as models from './models';
 
 export interface InlineResponse4007SearchResults {
     error: string;
+
     metadata: any;
+
 }

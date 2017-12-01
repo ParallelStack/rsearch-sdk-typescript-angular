@@ -9,9 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { InlineResponse2009SuggestResults } from './inlineResponse2009SuggestResults';
 
+import * as models from './models';
 
 export interface InlineResponse2009 {
-    suggestResults?: InlineResponse2009SuggestResults;
+    suggestResults?: models.InlineResponse2009SuggestResults;
+
 }

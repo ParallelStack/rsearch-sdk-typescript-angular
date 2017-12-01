@@ -9,9 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { InlineResponse2005Document } from './inlineResponse2005Document';
 
+import * as models from './models';
 
 export interface InlineResponse2005 {
-    document?: InlineResponse2005Document;
+    document?: models.InlineResponse2005Document;
+
 }

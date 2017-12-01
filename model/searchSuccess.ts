@@ -9,9 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { InlineResponse2008SearchResults } from './inlineResponse2008SearchResults';
 
+import * as models from './models';
 
 export interface SearchSuccess {
-    searchResults?: InlineResponse2008SearchResults;
+    searchResults?: models.InlineResponse2008SearchResults;
+
 }
