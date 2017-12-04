@@ -104,7 +104,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -169,7 +168,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -226,7 +224,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
         
 		// authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -286,7 +283,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -337,7 +333,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -395,7 +390,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -452,7 +446,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -507,7 +500,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -554,7 +546,6 @@ export class RsearchService {
     public getAllIndexes(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
@@ -673,7 +664,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
             queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
@@ -727,7 +717,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
             queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
@@ -777,7 +766,6 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-		let queryParameters;
 
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
