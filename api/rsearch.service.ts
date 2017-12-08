@@ -224,8 +224,8 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
-        
-		// authentication (authToken) required
+
+        // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
             queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
         }
@@ -664,6 +664,7 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
+
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
             queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
@@ -717,6 +718,7 @@ export class RsearchService {
         }
 
         let headers = this.defaultHeaders;
+
         // authentication (authToken) required
         if (this.configuration.apiKeys["auth_token"]) {
             queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
