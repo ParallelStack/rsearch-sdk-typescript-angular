@@ -1,6 +1,6 @@
 /**
  * ParallelStack RSearch API
- * REST API Specification for ParallelStack RSearch API
+ * REST API Specification for ParallelStack RSearch API.
  *
  * OpenAPI spec version: 1.0.0
  * Contact: team@parallelstack.com
@@ -9,9 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { InlineResponse2003DocumentType } from './inlineResponse2003DocumentType';
 
 
-export interface GetDoctypeSuccess {
-    documentType?: InlineResponse2003DocumentType;
+export interface GetDocTypeSuccess {
+    documentType: any;
 }

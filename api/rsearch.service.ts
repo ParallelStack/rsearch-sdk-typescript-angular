@@ -1,6 +1,6 @@
 /**
  * ParallelStack RSearch API
- * REST API Specification for ParallelStack RSearch API
+ * REST API Specification for ParallelStack RSearch API.
  *
  * OpenAPI spec version: 1.0.0
  * Contact: team@parallelstack.com
@@ -18,27 +18,32 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { InlineResponse200 } from '../model/inlineResponse200';
-import { InlineResponse2001 } from '../model/inlineResponse2001';
-import { InlineResponse2002 } from '../model/inlineResponse2002';
-import { InlineResponse2003 } from '../model/inlineResponse2003';
-import { InlineResponse2004 } from '../model/inlineResponse2004';
-import { InlineResponse2005 } from '../model/inlineResponse2005';
-import { InlineResponse2006 } from '../model/inlineResponse2006';
-import { InlineResponse2007 } from '../model/inlineResponse2007';
-import { InlineResponse2008 } from '../model/inlineResponse2008';
-import { InlineResponse2009 } from '../model/inlineResponse2009';
-import { InlineResponse201 } from '../model/inlineResponse201';
-import { InlineResponse2011 } from '../model/inlineResponse2011';
-import { InlineResponse202 } from '../model/inlineResponse202';
-import { InlineResponse400 } from '../model/inlineResponse400';
-import { InlineResponse4001 } from '../model/inlineResponse4001';
-import { InlineResponse4002 } from '../model/inlineResponse4002';
-import { InlineResponse4003 } from '../model/inlineResponse4003';
-import { InlineResponse4004 } from '../model/inlineResponse4004';
-import { InlineResponse4005 } from '../model/inlineResponse4005';
-import { InlineResponse4006 } from '../model/inlineResponse4006';
-import { InlineResponse4007 } from '../model/inlineResponse4007';
+import { CreateDocTypeFailure } from '../model/createDocTypeFailure';
+import { CreateDocTypeSuccess } from '../model/createDocTypeSuccess';
+import { CreateDocumentFailure } from '../model/createDocumentFailure';
+import { CreateDocumentSuccess } from '../model/createDocumentSuccess';
+import { CreateIndexFailure } from '../model/createIndexFailure';
+import { CreateIndexSuccess } from '../model/createIndexSuccess';
+import { DeleteDocumentFailure } from '../model/deleteDocumentFailure';
+import { DeleteDocumentSuccess } from '../model/deleteDocumentSuccess';
+import { DeleteIndexFailure } from '../model/deleteIndexFailure';
+import { DeleteIndexSuccess } from '../model/deleteIndexSuccess';
+import { GetDocTypeFailure } from '../model/getDocTypeFailure';
+import { GetDocTypeSuccess } from '../model/getDocTypeSuccess';
+import { GetDocTypesFailure } from '../model/getDocTypesFailure';
+import { GetDocTypesSuccess } from '../model/getDocTypesSuccess';
+import { GetDocumentFailure } from '../model/getDocumentFailure';
+import { GetDocumentSuccess } from '../model/getDocumentSuccess';
+import { GetDocumentsFailure } from '../model/getDocumentsFailure';
+import { GetDocumentsSuccess } from '../model/getDocumentsSuccess';
+import { GetIndexFailure } from '../model/getIndexFailure';
+import { GetIndexSuccess } from '../model/getIndexSuccess';
+import { GetIndexesFailure } from '../model/getIndexesFailure';
+import { GetIndexesSuccess } from '../model/getIndexesSuccess';
+import { SearchFailure } from '../model/searchFailure';
+import { SearchSuccess } from '../model/searchSuccess';
+import { SuggestFailure } from '../model/suggestFailure';
+import { SuggestSuccess } from '../model/suggestSuccess';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -82,14 +87,13 @@ export class RsearchService {
      * @param indexName Name of the index
      * @param docTypeName Name of the document_type
      * @param docId Document ID
-     * @param documentDetails Details of the document
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2006>;
-    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2006>>;
-    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2006>>;
-    public addDocument(indexName: string, docTypeName: string, docId: string, documentDetails: any, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<CreateDocumentSuccess>;
+    public addDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CreateDocumentSuccess>>;
+    public addDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CreateDocumentSuccess>>;
+    public addDocument(indexName: string, docTypeName: string, docId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling addDocument.');
         }
@@ -99,24 +103,17 @@ export class RsearchService {
         if (docId === null || docId === undefined) {
             throw new Error('Required parameter docId was null or undefined when calling addDocument.');
         }
-        if (documentDetails === null || documentDetails === undefined) {
-            throw new Error('Required parameter documentDetails was null or undefined when calling addDocument.');
-        }
 
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (writeAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -128,13 +125,9 @@ export class RsearchService {
         let consumes: string[] = [
             'application/json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
 
-        return this.httpClient.post<InlineResponse2006>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
-            documentDetails,
+        return this.httpClient.post<CreateDocumentSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -146,41 +139,33 @@ export class RsearchService {
 
     /**
      * 
-     * Creates specific &#x60;document_type&#x60; in &#x60;index_name&#x60; with specified parameters
+     * Creates specific &#x60;document_type&#x60; in &#x60;index_name&#x60; with specified parameters. You should define the parameters correctly as per the getting started guide, else getting the right structure might be an issue.
      * @param indexName Name of the index
      * @param docTypeName Name of the document_type
-     * @param docTypeDetails Details of the document_type
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addDocumentType(indexName: string, docTypeName: string, docTypeDetails: any, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2011>;
-    public addDocumentType(indexName: string, docTypeName: string, docTypeDetails: any, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2011>>;
-    public addDocumentType(indexName: string, docTypeName: string, docTypeDetails: any, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2011>>;
-    public addDocumentType(indexName: string, docTypeName: string, docTypeDetails: any, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public addDocumentType(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<CreateDocTypeSuccess>;
+    public addDocumentType(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CreateDocTypeSuccess>>;
+    public addDocumentType(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CreateDocTypeSuccess>>;
+    public addDocumentType(indexName: string, docTypeName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling addDocumentType.');
         }
         if (docTypeName === null || docTypeName === undefined) {
             throw new Error('Required parameter docTypeName was null or undefined when calling addDocumentType.');
         }
-        if (docTypeDetails === null || docTypeDetails === undefined) {
-            throw new Error('Required parameter docTypeDetails was null or undefined when calling addDocumentType.');
-        }
 
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -192,13 +177,9 @@ export class RsearchService {
         let consumes: string[] = [
             'application/json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
 
-        return this.httpClient.post<InlineResponse2011>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}`,
-            docTypeDetails,
+        return this.httpClient.post<CreateDocTypeSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -210,14 +191,14 @@ export class RsearchService {
 
     /**
      * 
-     * Creates &#x60;a new index&#x60;
+     * Creates &#x60;a new index&#x60;.
      * @param indexName Name of the index
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addIndex(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse201>;
-    public addIndex(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse201>>;
-    public addIndex(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse201>>;
+    public addIndex(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<CreateIndexSuccess>;
+    public addIndex(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CreateIndexSuccess>>;
+    public addIndex(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CreateIndexSuccess>>;
     public addIndex(indexName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling addIndex.');
@@ -226,17 +207,13 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (writeAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -248,7 +225,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.post<InlineResponse201>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}`,
+        return this.httpClient.post<CreateIndexSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -268,9 +245,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2007>;
-    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2007>>;
-    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2007>>;
+    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<DeleteDocumentSuccess>;
+    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<DeleteDocumentSuccess>>;
+    public deleteDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<DeleteDocumentSuccess>>;
     public deleteDocument(indexName: string, docTypeName: string, docId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling deleteDocument.');
@@ -285,17 +262,13 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (writeAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -307,7 +280,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<InlineResponse2007>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
+        return this.httpClient.delete<DeleteDocumentSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -324,9 +297,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteIndex(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse202>;
-    public deleteIndex(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse202>>;
-    public deleteIndex(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse202>>;
+    public deleteIndex(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<DeleteIndexSuccess>;
+    public deleteIndex(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<DeleteIndexSuccess>>;
+    public deleteIndex(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<DeleteIndexSuccess>>;
     public deleteIndex(indexName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling deleteIndex.');
@@ -335,17 +308,14 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (writeAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -356,7 +326,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.delete<InlineResponse202>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}`,
+        return this.httpClient.delete<DeleteIndexSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -368,41 +338,33 @@ export class RsearchService {
 
     /**
      * 
-     * Advanced Search which gets all documents in &#x60;index_name&#x60; for provided search criteria
+     * Gets Suggestions from &#x60;doc_type_name&#x60; in &#x60;index_name&#x60; limited by the body params. Please ensure you refer the getting started guides, to get the format of the query right.
      * @param indexName Name of the index
-     * @param docTypeName Name of the Document)type
-     * @param search Details of the search query
+     * @param docTypeName Name of the Document_type
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2008>;
-    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2008>>;
-    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2008>>;
-    public getAdvancedSearchResults(indexName: string, docTypeName: string, search: any, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAdvancedDocTypeSuggestResults(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<SuggestSuccess>;
+    public getAdvancedDocTypeSuggestResults(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SuggestSuccess>>;
+    public getAdvancedDocTypeSuggestResults(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SuggestSuccess>>;
+    public getAdvancedDocTypeSuggestResults(indexName: string, docTypeName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
-            throw new Error('Required parameter indexName was null or undefined when calling getAdvancedSearchResults.');
+            throw new Error('Required parameter indexName was null or undefined when calling getAdvancedDocTypeSuggestResults.');
         }
         if (docTypeName === null || docTypeName === undefined) {
-            throw new Error('Required parameter docTypeName was null or undefined when calling getAdvancedSearchResults.');
-        }
-        if (search === null || search === undefined) {
-            throw new Error('Required parameter search was null or undefined when calling getAdvancedSearchResults.');
+            throw new Error('Required parameter docTypeName was null or undefined when calling getAdvancedDocTypeSuggestResults.');
         }
 
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
-        // authentication (writeAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
+        // authentication (readAppID) required
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -414,13 +376,109 @@ export class RsearchService {
         let consumes: string[] = [
             'application/json'
         ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
+
+        return this.httpClient.post<SuggestSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/suggest`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Gets Suggestions in &#x60;index_name&#x60; limited by the request body fields
+     * @param indexName Name of the index
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getAdvancedIndexSuggestResults(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<SuggestSuccess>;
+    public getAdvancedIndexSuggestResults(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SuggestSuccess>>;
+    public getAdvancedIndexSuggestResults(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SuggestSuccess>>;
+    public getAdvancedIndexSuggestResults(indexName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (indexName === null || indexName === undefined) {
+            throw new Error('Required parameter indexName was null or undefined when calling getAdvancedIndexSuggestResults.');
         }
 
-        return this.httpClient.post<InlineResponse2008>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/search`,
-            search,
+        let headers = this.defaultHeaders;
+
+        // authentication (authToken) required
+        // authentication (readAppID) required
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.post<SuggestSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/suggest`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Advanced Search which gets all documents in &#x60;index_name&#x60; for provided search criteria. Please ensure you refer the getting started guides, to get the format of the query right.
+     * @param indexName Name of the index
+     * @param docTypeName Name of the Document_type
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getAdvancedSearchResults(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<SearchSuccess>;
+    public getAdvancedSearchResults(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SearchSuccess>>;
+    public getAdvancedSearchResults(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SearchSuccess>>;
+    public getAdvancedSearchResults(indexName: string, docTypeName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (indexName === null || indexName === undefined) {
+            throw new Error('Required parameter indexName was null or undefined when calling getAdvancedSearchResults.');
+        }
+        if (docTypeName === null || docTypeName === undefined) {
+            throw new Error('Required parameter docTypeName was null or undefined when calling getAdvancedSearchResults.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (authToken) required
+        // authentication (writeAppID) required
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.post<SearchSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/search`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -437,9 +495,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllDocumentTypes(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2002>;
-    public getAllDocumentTypes(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2002>>;
-    public getAllDocumentTypes(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2002>>;
+    public getAllDocumentTypes(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<GetDocTypesSuccess>;
+    public getAllDocumentTypes(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetDocTypesSuccess>>;
+    public getAllDocumentTypes(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetDocTypesSuccess>>;
     public getAllDocumentTypes(indexName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getAllDocumentTypes.');
@@ -448,17 +506,13 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -470,7 +524,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2002>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types`,
+        return this.httpClient.get<GetDocTypesSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -482,15 +536,15 @@ export class RsearchService {
 
     /**
      * 
-     * Fetches all documents in &#x60;doc_type_name&#x60; for &#x60;index_name&#x60;
+     * Fetches all documents in &#x60;doc_type_name&#x60; for &#x60;index_name&#x60;. All the documents and hence careful with its use.
      * @param indexName Name of the index
      * @param docTypeName Name of the document_type
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2004>;
-    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2004>>;
-    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2004>>;
+    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<GetDocumentsSuccess>;
+    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetDocumentsSuccess>>;
+    public getAllDocuments(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetDocumentsSuccess>>;
     public getAllDocuments(indexName: string, docTypeName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getAllDocuments.');
@@ -502,17 +556,13 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -524,7 +574,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2004>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents`,
+        return this.httpClient.get<GetDocumentsSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -536,29 +586,25 @@ export class RsearchService {
 
     /**
      * 
-     * Fetches &#x60;All indexes&#x60;
+     * Fetches &#x60;All indexes&#x60; that the user has. Not recommended to be used in production code, as there isn&#39;t that big a Use case for listing all indexes!
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllIndexes(observe?: 'body', reportProgress?: boolean): Observable<InlineResponse200>;
-    public getAllIndexes(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse200>>;
-    public getAllIndexes(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse200>>;
+    public getAllIndexes(observe?: 'body', reportProgress?: boolean): Observable<GetIndexesSuccess>;
+    public getAllIndexes(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetIndexesSuccess>>;
+    public getAllIndexes(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetIndexesSuccess>>;
     public getAllIndexes(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -570,7 +616,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse200>(`${this.basePath}/indexes`,
+        return this.httpClient.get<GetIndexesSuccess>(`${this.basePath}/indexes`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -588,9 +634,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getBasicSearchResults(indexName: string, q: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2008>;
-    public getBasicSearchResults(indexName: string, q: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2008>>;
-    public getBasicSearchResults(indexName: string, q: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2008>>;
+    public getBasicSearchResults(indexName: string, q: string, observe?: 'body', reportProgress?: boolean): Observable<SearchSuccess>;
+    public getBasicSearchResults(indexName: string, q: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SearchSuccess>>;
+    public getBasicSearchResults(indexName: string, q: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SearchSuccess>>;
     public getBasicSearchResults(indexName: string, q: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getBasicSearchResults.');
@@ -607,17 +653,13 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -629,7 +671,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2008>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/search`,
+        return this.httpClient.get<SearchSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/search`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -642,16 +684,76 @@ export class RsearchService {
 
     /**
      * 
-     * Fetches details of &#x60;doc_id&#x60; in &#x60;doc_type_name&#x60; for &#x60;index_name&#x60;
+     * Gets Suggestions from &#x60;doc_type_name&#x60; in &#x60;index_name&#x60;. Please ensure you refer the getting started guides, to get the format of the query right.
+     * @param indexName Name of the index
+     * @param docTypeName Name of the Document_type
+     * @param q Details of the suggest query
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getDocTypeSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'body', reportProgress?: boolean): Observable<SuggestSuccess>;
+    public getDocTypeSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SuggestSuccess>>;
+    public getDocTypeSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SuggestSuccess>>;
+    public getDocTypeSuggestResults(indexName: string, docTypeName: string, q: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (indexName === null || indexName === undefined) {
+            throw new Error('Required parameter indexName was null or undefined when calling getDocTypeSuggestResults.');
+        }
+        if (docTypeName === null || docTypeName === undefined) {
+            throw new Error('Required parameter docTypeName was null or undefined when calling getDocTypeSuggestResults.');
+        }
+        if (q === null || q === undefined) {
+            throw new Error('Required parameter q was null or undefined when calling getDocTypeSuggestResults.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (q !== undefined) {
+            queryParameters = queryParameters.set('q', <any>q);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (authToken) required
+        // authentication (readAppID) required
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<SuggestSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/suggest`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * Fetches the document referenced by &#x60;doc_id&#x60; in &#x60;doc_type_name&#x60; for &#x60;index_name&#x60;
      * @param indexName Name of the index
      * @param docTypeName Name of the document_type
      * @param docId Document ID
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2005>;
-    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2005>>;
-    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2005>>;
+    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'body', reportProgress?: boolean): Observable<GetDocumentSuccess>;
+    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetDocumentSuccess>>;
+    public getDocument(indexName: string, docTypeName: string, docId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetDocumentSuccess>>;
     public getDocument(indexName: string, docTypeName: string, docId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getDocument.');
@@ -666,17 +768,13 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -688,7 +786,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2005>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
+        return this.httpClient.get<GetDocumentSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/documents/${encodeURIComponent(String(docId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -706,9 +804,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getDocumentType(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2003>;
-    public getDocumentType(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2003>>;
-    public getDocumentType(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2003>>;
+    public getDocumentType(indexName: string, docTypeName: string, observe?: 'body', reportProgress?: boolean): Observable<GetDocTypeSuccess>;
+    public getDocumentType(indexName: string, docTypeName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetDocTypeSuccess>>;
+    public getDocumentType(indexName: string, docTypeName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetDocTypeSuccess>>;
     public getDocumentType(indexName: string, docTypeName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getDocumentType.');
@@ -720,17 +818,13 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -742,7 +836,7 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2003>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}`,
+        return this.httpClient.get<GetDocTypeSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -759,9 +853,9 @@ export class RsearchService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getIndex(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2001>;
-    public getIndex(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2001>>;
-    public getIndex(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2001>>;
+    public getIndex(indexName: string, observe?: 'body', reportProgress?: boolean): Observable<GetIndexSuccess>;
+    public getIndex(indexName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetIndexSuccess>>;
+    public getIndex(indexName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetIndexSuccess>>;
     public getIndex(indexName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (indexName === null || indexName === undefined) {
             throw new Error('Required parameter indexName was null or undefined when calling getIndex.');
@@ -770,17 +864,13 @@ export class RsearchService {
         let headers = this.defaultHeaders;
 
         // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
         // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'application/json'
+            'application/json'
+            'application/json'
+            'application/json'
             'application/json'
         ];
         let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -792,72 +882,8 @@ export class RsearchService {
         let consumes: string[] = [
         ];
 
-        return this.httpClient.get<InlineResponse2001>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}`,
+        return this.httpClient.get<GetIndexSuccess>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}`,
             {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * Basic Search - Gets Suggestions from &#x60;doc_type_name&#x60; in &#x60;index_name&#x60;
-     * @param indexName Name of the index
-     * @param docTypeName Name of the Document_type
-     * @param q Details of the suggest query
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'body', reportProgress?: boolean): Observable<InlineResponse2009>;
-    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InlineResponse2009>>;
-    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InlineResponse2009>>;
-    public getSuggestResults(indexName: string, docTypeName: string, q: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (indexName === null || indexName === undefined) {
-            throw new Error('Required parameter indexName was null or undefined when calling getSuggestResults.');
-        }
-        if (docTypeName === null || docTypeName === undefined) {
-            throw new Error('Required parameter docTypeName was null or undefined when calling getSuggestResults.');
-        }
-        if (q === null || q === undefined) {
-            throw new Error('Required parameter q was null or undefined when calling getSuggestResults.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (q !== undefined) {
-            queryParameters = queryParameters.set('q', <any>q);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (authToken) required
-        if (this.configuration.apiKeys["auth_token"]) {
-            queryParameters = queryParameters.set('auth_token', this.configuration.apiKeys["auth_token"]);
-        }
-
-        // authentication (readAppID) required
-        if (this.configuration.apiKeys["X-RSearch-App-ID"]) {
-            headers = headers.set('X-RSearch-App-ID', this.configuration.apiKeys["X-RSearch-App-ID"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        return this.httpClient.get<InlineResponse2009>(`${this.basePath}/indexes/${encodeURIComponent(String(indexName))}/document_types/${encodeURIComponent(String(docTypeName))}/suggest`,
-            {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

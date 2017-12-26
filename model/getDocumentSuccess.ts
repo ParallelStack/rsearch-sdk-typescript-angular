@@ -11,6 +11,6 @@
  */
 
 
-export interface SearchSuccess {
-    suggestResults?: any;
+export interface GetDocumentSuccess {
+    document: any;
 }

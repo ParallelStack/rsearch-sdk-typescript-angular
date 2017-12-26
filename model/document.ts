@@ -9,8 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ERRORUNKNOWN } from './eRRORUNKNOWN';
 
 
-export interface SearchSuccess {
-    suggestResults?: any;
+export interface Document {
+    documentId: string;
+    fields: Array<any<ERRORUNKNOWN>>;
 }

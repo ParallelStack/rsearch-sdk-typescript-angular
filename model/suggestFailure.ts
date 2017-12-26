@@ -11,6 +11,6 @@
  */
 
 
-export interface SearchSuccess {
+export interface SuggestFailure {
     suggestResults?: any;
 }
