@@ -9,9 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { SearchSuccessSuggestResults } from './searchSuccessSuggestResults';
+import { Document } from './document';
 
 
-export interface SuggestSuccess {
-    suggestResults: SearchSuccessSuggestResults;
+export interface GetDocumentSuccessDocument {
+    result: Document;
 }

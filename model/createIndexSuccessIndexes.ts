@@ -9,9 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { SearchSuccessSuggestResults } from './searchSuccessSuggestResults';
 
 
-export interface SuggestSuccess {
-    suggestResults: SearchSuccessSuggestResults;
+export interface CreateIndexSuccessIndexes {
+    result: CreateIndexSuccessIndexes.ResultEnum;
+}
+export namespace CreateIndexSuccessIndexes {
+    export type ResultEnum = 'created';
+    export const ResultEnum = {
+        Created: 'created' as ResultEnum
+    }
 }
