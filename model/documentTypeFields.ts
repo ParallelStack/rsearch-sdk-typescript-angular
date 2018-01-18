@@ -13,18 +13,6 @@
 
 export interface DocumentTypeFields {
     name?: string;
-    type?: DocumentTypeFields.TypeEnum;
+    type?: string;
     suggest?: string;
-}
-export namespace DocumentTypeFields {
-    export type TypeEnum = 'string' | 'text' | 'float' | 'integer' | 'date' | 'location' | 'fixed';
-    export const TypeEnum = {
-        String: 'string' as TypeEnum,
-        Text: 'text' as TypeEnum,
-        Float: 'float' as TypeEnum,
-        Integer: 'integer' as TypeEnum,
-        Date: 'date' as TypeEnum,
-        Location: 'location' as TypeEnum,
-        Fixed: 'fixed' as TypeEnum
-    }
 }
