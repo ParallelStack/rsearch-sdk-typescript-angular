@@ -14,7 +14,7 @@
 export interface DocumentTypeFields {
     name?: string;
     type?: DocumentTypeFields.TypeEnum;
-    suggest?: DocumentTypeFields.SuggestEnum;
+    suggest?: string;
 }
 export namespace DocumentTypeFields {
     export type TypeEnum = 'string' | 'text' | 'float' | 'integer' | 'date' | 'location' | 'fixed';
@@ -26,9 +26,5 @@ export namespace DocumentTypeFields {
         Date: 'date' as TypeEnum,
         Location: 'location' as TypeEnum,
         Fixed: 'fixed' as TypeEnum
-    }
-    export type SuggestEnum = 'true';
-    export const SuggestEnum = {
-        True: 'true' as SuggestEnum
     }
 }
