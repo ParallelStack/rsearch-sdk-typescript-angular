@@ -9,10 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { SearchSuccessSuggestResultsMetadata } from './searchSuccessSuggestResultsMetadata';
 
 
-export interface SearchSuccessSuggestResults {
-    results: Array<any>;
-    metadata: SearchSuccessSuggestResultsMetadata;
+export interface SearchSuccessSearchResultsMetadata {
+    numberSearchResults: number;
+    query: string;
 }

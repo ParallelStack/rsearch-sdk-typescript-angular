@@ -9,9 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { SearchFailureSuggestResults } from './searchFailureSuggestResults';
+import { SearchFailureSearchResults } from './searchFailureSearchResults';
 
 
 export interface SearchFailure {
-    suggestResults?: SearchFailureSuggestResults;
+    searchResults: SearchFailureSearchResults;
 }

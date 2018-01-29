@@ -11,7 +11,7 @@
  */
 
 
-export interface SearchFailureSuggestResults {
+export interface SearchFailureSearchResults {
     error: string;
     metadata: any;
 }
