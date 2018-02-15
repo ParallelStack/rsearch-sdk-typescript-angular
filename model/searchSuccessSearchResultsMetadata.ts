@@ -14,5 +14,5 @@
 export interface SearchSuccessSearchResultsMetadata {
     numberSearchResults: number;
     query: string;
-    aggregations?: any;
+    aggregated?: any;
 }
