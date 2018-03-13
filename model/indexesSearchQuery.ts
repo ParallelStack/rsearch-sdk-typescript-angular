@@ -9,9 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetIndexesFailureIndexes } from './getIndexesFailureIndexes';
+import { IndexesSearchQuerySearch } from './indexesSearchQuerySearch';
 
 
-export interface CreateDocumentFailure {
-    document: GetIndexesFailureIndexes;
+export interface IndexesSearchQuery {
+    search: IndexesSearchQuerySearch;
 }

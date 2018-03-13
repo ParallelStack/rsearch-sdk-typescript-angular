@@ -12,8 +12,9 @@
 import { SearchQuerySearchAggregations } from './searchQuerySearchAggregations';
 
 
-export interface SearchQuerySearch {
+export interface IndexesSearchQuerySearch {
     query: string;
+    indexes: Array<string>;
     fuzzy?: number;
     resultFields?: Array<string>;
     searchFields?: Array<string>;

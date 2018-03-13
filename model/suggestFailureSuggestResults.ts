@@ -9,9 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetIndexesFailureIndexes } from './getIndexesFailureIndexes';
+import { SuggestFailureSuggestResultsMetadata } from './suggestFailureSuggestResultsMetadata';
 
 
-export interface CreateDocumentFailure {
-    document: GetIndexesFailureIndexes;
+export interface SuggestFailureSuggestResults {
+    error: string;
+    metadata: SuggestFailureSuggestResultsMetadata;
 }

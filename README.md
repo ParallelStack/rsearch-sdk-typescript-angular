@@ -1,4 +1,4 @@
-## pstack-rsearch-client@1.2.1
+## pstack-rsearch-client@1.3.0
 
 ### Building
 
@@ -19,7 +19,7 @@ navigate to the folder of your consuming project and run one of next commando's.
 _published:_
 
 ```
-npm install pstack-rsearch-client@1.2.1 --save
+npm install pstack-rsearch-client@1.3.0 --save
 ```
 
 _unPublished (not recommended):_
@@ -37,7 +37,7 @@ npm link
 
 In your project:
 ```
-npm link pstack-rsearch-client@1.2.1
+npm link pstack-rsearch-client@1.3.0
 ```
 
 In your Angular project:

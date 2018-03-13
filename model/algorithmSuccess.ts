@@ -9,9 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { GetIndexesFailureIndexes } from './getIndexesFailureIndexes';
+import { AlgorithmSuccessAlgorithmResults } from './algorithmSuccessAlgorithmResults';
 
 
-export interface CreateDocumentFailure {
-    document: GetIndexesFailureIndexes;
+export interface AlgorithmSuccess {
+    algorithmResults: AlgorithmSuccessAlgorithmResults;
 }
